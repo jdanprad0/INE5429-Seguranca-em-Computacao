@@ -27,10 +27,8 @@ class LinearCongruential:
         """
         x = self.seed
         result = 0
-        bits_needed = num_bits
-        while bits_needed > 0:
+        for i in range(num_bits):
             x = (self.a * x + self.c) % self.m # Calcular Xn+1 = (a * Xn + c) mod m
             bit = x % 2 # Extrair o bit menos significativo de x
             result = (result << 1) | bit # Construir o número resultante bit a bit
-            bits_needed -= 1
         return result

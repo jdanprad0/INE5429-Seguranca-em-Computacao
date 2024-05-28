@@ -3,11 +3,10 @@ from typing import Dict, Union
 
 from generators.blum_blum_shub import BlumBlumShub
 from generators.linear_congruential import LinearCongruential
-
 from tests.fermat_test import FermatTest
 from tests.miller_rabin_test import MillerRabinTest
-
 from utils.generator_type import GeneratorType
+from utils.prime_check_algorithm_type import PrimeCheckAlgorithmType
 
 
 class PrimeNumberGenerator:
@@ -32,34 +31,47 @@ class PrimeNumberGenerator:
         self.fermat_test = FermatTest(fermat_iterations)
 
 
-    def generate_prime(self, num_bits: int, algoritmo: GeneratorType) -> int:
+    def generate_prime(self, num_bits: int, algoritmo_gerador: GeneratorType, algoritmo_verificador: PrimeCheckAlgorithmType) -> int:
         """
         Gera um número primo de tamanho num_bits.
 
         Parâmetros:
         num_bits (int): Número de bits do número primo gerado
-        algoritmo (GeneratorType): Tipo de algoritmo gerador de número pseudo-aleatório utilizado para gerar o número primo
+        algoritmo_gerador (GeneratorType): Tipo de algoritmo gerador de número pseudo-aleatório utilizado para gerar o número primo
+        algoritmo_verificador (PrimeCheckAlgorithmType): Tipo de algoritmo para verificar a primalidade de um número
 
         Retorna:
         int: Número primo
         """
         while True:
-            if (algoritmo == GeneratorType.BLUM_BLUM_SHUB):
+            if (algoritmo_gerador == GeneratorType.BLUM_BLUM_SHUB):
                 candidate = self.blum_blum_shub.generate(num_bits)
-                isPrime = self.fermat_test.fermat(candidate)
+
+                isPrime = False
+                if (algoritmo_verificador == PrimeCheckAlgorithmType.FERMAT):
+                    isPrime = self.fermat_test.fermat(candidate)
+                else:
+                    isPrime = self.miller_rabin_test.miller_rabin(candidate)
+                
                 if isPrime:
                     return candidate
                 else:
-                    self.blum_blum_shub.s = int(time.time()) # Apenas muda a semente baseada no horário 
-            elif (algoritmo == GeneratorType.LINEAR_CONGRUENTIAL):
+                    self.blum_blum_shub.s += 1 # Apenas muda a semente baseada no horário
+            elif (algoritmo_gerador == GeneratorType.LINEAR_CONGRUENTIAL):
                 candidate = self.linear_congruential.generate(num_bits)
-                isPrime = self.fermat_test.fermat(candidate)
+                
+                isPrime = False
+                if (algoritmo_verificador == PrimeCheckAlgorithmType.FERMAT):
+                    isPrime = self.fermat_test.fermat(candidate)
+                else:
+                    isPrime = self.miller_rabin_test.miller_rabin(candidate)
+
                 if isPrime:
                     return candidate
                 else:
-                    self.linear_congruential.seed = int(time.time()) # Apenas muda a semente baseada no horário
+                    self.linear_congruential.seed += 1 # Apenas muda a semente baseada no horário
             else:
-                return None
+                return 0
 
 
     def test_prime(self, prime_number: int, num_bits: int) -> Dict[str, Union[int, bool]]:
