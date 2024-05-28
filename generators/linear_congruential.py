@@ -6,7 +6,7 @@ class LinearCongruential:
     a (int): Multiplicador.
     c (int): Incremento.
     m (int): Módulo.
-    seed (int): Valor inicial (semente).
+    seed (int): Semente inicial.
     """
     def __init__(self, a: int, c: int, m: int, seed: int):
         self.a = a

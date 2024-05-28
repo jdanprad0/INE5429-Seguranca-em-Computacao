@@ -21,8 +21,8 @@ class PrimeNumberGenerator:
     a (int): Multiplicador para Congruência Linear.
     c (int): Incremento para Congruência Linear.
     m (int): Módulo para Congruência Linear.
-    seed (int): Valor inicial (semente) para Congruência Linear.
-    miller_rabin_iterations (int): Número de iterações do teste para Miller Rabin
+    seed (int): Semente inicial para Congruência Linear.
+    miller_rabin_iterations (int): Número de iterações do teste para Miller-Rabin
     fermat_iterations (int): Número de iterações do teste para Fermat
     """
     def __init__(self, p: int, q: int, s: int, a: int, c: int, m: int, seed: int, miller_rabin_iterations: int, fermat_iterations: int):
@@ -37,7 +37,7 @@ class PrimeNumberGenerator:
         Gera um número primo de tamanho num_bits.
 
         Parâmetros:
-        num_bits (int): Número de bits desejado do número primo a ser gerado
+        num_bits (int): Número de bits do número primo gerado
         algoritmo (GeneratorType): Tipo de algoritmo gerador de número pseudo-aleatório utilizado para gerar o número primo
 
         Retorna:
@@ -50,7 +50,7 @@ class PrimeNumberGenerator:
                 if isPrime:
                     return candidate
                 else:
-                    self.blum_blum_shub.s = int(time.time()) # Apenas muda a semente baseada no horário
+                    self.blum_blum_shub.s = int(time.time()) # Apenas muda a semente baseada no horário 
             elif (algoritmo == GeneratorType.LINEAR_CONGRUENTIAL):
                 candidate = self.linear_congruential.generate(num_bits)
                 isPrime = self.fermat_test.fermat(candidate)
@@ -67,11 +67,11 @@ class PrimeNumberGenerator:
         Re-testa um número primo gerado usando Fermat e Miller-Rabin.
 
         Parâmetros
-        prime_number (int): Número primo a ser testado.
-        num_bits (int): Número de bits do número primo a ser testado.
+        prime_number (int): Número primo testado.
+        num_bits (int): Número de bits do número primo testado.
 
         Retorna:
-        dict[str, int | bool]: dict[número primo testado | resultado do teste por Fermat | tempo de execução de Fermat em segundos | resultado do teste por Miller Rabin | tempo de execução de Miller Rabin em segundos | tamanho em bits do número testado, valor retornado].
+        dict[str, int | bool]: dict[número primo testado | resultado do teste por Fermat | tempo de execução de Fermat em segundos | resultado do teste por Miller-Rabin | tempo de execução de Miller-Rabin em segundos | tamanho em bits do número testado, valor retornado].
         """
         start_time = time.time()
         fermat_result = self.fermat_test.fermat(prime_number)

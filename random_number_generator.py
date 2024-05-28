@@ -16,7 +16,7 @@ class RandomNumberGenerator:
     a (int): Multiplicador para Congruência Linear.
     c (int): Incremento para Congruência Linear.
     m (int): Módulo para Congruência Linear.
-    seed (int): Valor inicial (semente) para Congruência Linear.
+    seed (int): Semente inicial para Congruência Linear.
     """
     def __init__(self, p: int, q: int, s: int, a: int, c: int, m: int, seed: int):
         self.blum_blum_shub = BlumBlumShub(p, q, s)
