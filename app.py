@@ -1,6 +1,11 @@
 import time
+
 from prime_number_generator import PrimeNumberGenerator
+
 from random_number_generator import RandomNumberGenerator
+
+from utils.generator_type import GeneratorType
+
 
 def main():
     # Parâmetros para os geradores
@@ -33,9 +38,11 @@ def main():
 
     # Gerando e testando números primos
     for num_bits in tamanhos_bits:
-        print(f"\nGerando número primo de {num_bits} bits com Blum Blum Shub...")
+        algoritmo = GeneratorType.BLUM_BLUM_SHUB
+        
+        print(f"\nGerando número primo de {num_bits} bits com {algoritmo}...")
         start_time = time.time()
-        prime_number = prime_generator.generate_prime(num_bits)
+        prime_number = prime_generator.generate_prime(num_bits, algoritmo)
         generation_time = time.time() - start_time
 
         print(f"Número primo gerado: {prime_number}")

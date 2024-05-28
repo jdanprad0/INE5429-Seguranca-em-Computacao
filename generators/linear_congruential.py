@@ -1,4 +1,4 @@
-class LinearCongruentialGenerator:
+class LinearCongruential:
     """
     Implementação do gerador de números pseudo-aleatórios de congruência linear (LCG).
 

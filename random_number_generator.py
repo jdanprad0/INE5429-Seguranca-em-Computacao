@@ -2,7 +2,7 @@ import time
 from typing import Dict, Tuple, List
 
 from generators.blum_blum_shub import BlumBlumShub
-from generators.linear_congruential_generator import LinearCongruentialGenerator
+from generators.linear_congruential import LinearCongruential
 
 
 class RandomNumberGenerator:
@@ -20,7 +20,7 @@ class RandomNumberGenerator:
     """
     def __init__(self, p: int, q: int, s: int, a: int, c: int, m: int, seed: int):
         self.blum_blum_shub = BlumBlumShub(p, q, s)
-        self.linear_congruential_generator = LinearCongruentialGenerator(a, c, m, seed)
+        self.linear_congruential = LinearCongruential(a, c, m, seed)
 
 
     def generate_numbers(self, tamanhos_bits: List[int]) -> Dict[str, Tuple[int, float]]:
@@ -45,7 +45,7 @@ class RandomNumberGenerator:
             results["blum_blum_shub"].append((random_number, duration))
 
             start_time = time.time()
-            random_number = self.linear_congruential_generator.generate(tamanho)
+            random_number = self.linear_congruential.generate(tamanho)
             duration = time.time() - start_time
             results["linear_congruential"].append((random_number, duration))
 
