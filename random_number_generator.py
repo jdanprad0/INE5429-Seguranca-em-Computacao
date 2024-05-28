@@ -31,7 +31,7 @@ class RandomNumberGenerator:
         tamanhos_bits (int): Lista de tamanhos de bits.
 
         Retorna:
-        dict[str, (int, float)]: dict[nome do algoritmo, (número gerado, tempo de geração)].
+        dict[str, (int, float)]: dict[nome do algoritmo, (número gerado, tempo de geração em segundos)].
         """
         results = {
             "blum_blum_shub": [],

@@ -58,7 +58,7 @@ class PrimeNumberGenerator:
         num_bits (int): Número de bits do número primo a ser testado.
 
         Retorna:
-        dict[str, int | bool]: dict[número primo testado | resultado do teste por Fermat | tempo de execução de Fermat | resultado do teste por Miller Rabin | tempo de execução de Miller Rabin | tamanho em bits do número testado, valor retornado].
+        dict[str, int | bool]: dict[número primo testado | resultado do teste por Fermat | tempo de execução de Fermat em segundos | resultado do teste por Miller Rabin | tempo de execução de Miller Rabin em segundos | tamanho em bits do número testado, valor retornado].
         """
         start_time = time.time()
         fermat_result = self.fermat_test.fermat(prime_number)
