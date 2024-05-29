@@ -58,7 +58,6 @@ def main():
                 print(f"Tempo de geração: {generation_time:.6f} segundos")
 
                 test_results = prime_generator.test_prime(prime_number, num_bits)
-                print(f"Número de {num_bits} bits: {prime_number}")
                 print(f"Fermat: {'Primo' if test_results['fermat_result'] else 'Composto'}, Tempo: {test_results['fermat_time']:.6f} segundos")
                 print(f"Miller-Rabin: {'Primo' if test_results['miller_rabin_result'] else 'Composto'}, Tempo: {test_results['miller_rabin_time']:.6f} segundos\n")
                 print("\n" + "-"*50 + "\n")

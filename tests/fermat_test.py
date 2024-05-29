@@ -53,5 +53,4 @@ class FermatTest:
             duration = time.time() - start_time
 
             print(f"Teste de {n}:")
-            print(f"  Fermat: {'Primo' if result else 'Composto'}, Tempo: {duration:.6f} segundos")
-            print()
+            print(f"  Fermat: {'Primo' if result else 'Composto'}, Tempo: {duration:.6f} segundos\n")

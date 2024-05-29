@@ -83,5 +83,4 @@ class MillerRabinTest:
             duration = time.time() - start_time
 
             print(f"Teste de {n}:")
-            print(f"  Miller Rabin: {'Primo' if result else 'Composto'}, Tempo: {duration:.6f} segundos")
-            print()
+            print(f"  Miller Rabin: {'Primo' if result else 'Composto'}, Tempo: {duration:.6f} segundos\n")
